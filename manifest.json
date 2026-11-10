@@ -1,0 +1,12 @@
+{
+  "name": "MASTER GAMES",
+  "short_name": "MASTER GAMES",
+  "description": "বাংলা অফলাইন কার্ড ও বোর্ড গেম",
+  "lang": "bn",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#101713",
+  "theme_color": "#101713"
+}
