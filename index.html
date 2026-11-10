@@ -33,15 +33,33 @@ main{max-width:850px;margin:auto;padding:8px 13px 30px}.wallet{background:linear
 <section id="hazari" class="screen"><button class="back" data-back>← গেম তালিকা</button><div class="section"><h2>🎴 হাজারি</h2><span>১৩ কার্ড · ৪ জন</span></div><div class="table"><div class="seat"><b>কম্পিউটার খেলোয়াড়রা</b><div class="cards" id="hzBots"></div></div><div class="status" id="hzs">১৩টি করে কার্ড নিয়ে হাতের মোট পয়েন্ট দেখুন।</div><div class="seat"><b>আপনার ১৩টি কার্ড</b><div class="cards" id="hzHand"></div></div></div><div class="result" id="hzr">নতুন ডিল শুরু করুন।</div><div class="actions"><button class="btn primary" id="hzDeal">ডিল করুন</button></div><p class="tiny">এই প্রথম সংস্করণে ১৩ কার্ডের সহজ হাই-কার্ড স্কোরিং ডেমো। পূর্ণ প্রচলিত হাজারি নিয়ম পরে আরও নিখুঁত করা হবে।</p></section>
 <section id="bridge" class="screen"><button class="back" data-back>← গেম তালিকা</button><div class="section"><h2>♣️ কল ব্রিজ</h2><span>৪ জন · ট্রিক টেকিং</span></div><div class="table"><div class="seat"><b>ট্রিকের কার্ড</b><div class="cards" id="brTrick"></div></div><div class="status" id="brs">বিড দিন, তারপর পালাক্রমে কার্ড খেলুন।</div><div class="seat"><b>আপনার কার্ড · খেলতে ট্যাপ করুন</b><div class="cards hand" id="brHand"></div></div></div><div class="result" id="brr">প্রতি রাউন্ডে ১৩টি ট্রিক।</div><div class="actions"><label class="tiny">আপনার বিড <select id="brBid"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option></select></label><button class="btn primary" id="brStart">নতুন ডিল</button></div></section>
 <section id="ludo" class="screen"><button class="back" data-back>← গেম তালিকা</button><div class="section"><h2>🎲 লুডু</h2><span>আপনি বনাম ১–৩ বট</span></div><div class="table"><div class="status" id="ls">ডাইস ফেলুন। ঘরে ঢুকতে ৬ লাগবে।</div><div class="board" id="lboard"></div></div><div class="result" id="lr">আপনার গুটি: ০ · বট: ০</div><div class="actions"><label class="tiny">খেলোয়াড় <select id="lplayers"><option value="2">২ জন</option><option value="3">৩ জন</option><option value="4">৪ জন</option></select></label><button class="btn primary" id="lnew">নতুন খেলা</button><button class="btn secondary" id="ldice">🎲 ডাইস ফেলুন</button></div><p class="tiny">সরল লুডু রেস: প্রত্যেকের একটি গুটি; ৬ পেলে শুরু, আগে ৩০ ঘর পার হলে জয়।</p></section>
-</main><footer>MASTER GAMES · Offline Edition · v1.0</footer>
+</main><footer>MASTER GAMES · Offline Edition · v1.1</footer>
 <script>
 (()=>{
 const $=id=>document.getElementById(id);let balance=10000,sound=false,selected=null;
-const fmt=n=>new Intl.NumberFormat('bn-BD').format(n);function wallet(){$('balance').textContent='৳ '+fmt(balance)}
+const fmt=n=>new Intl.NumberFormat('bn-BD').format(n);function wallet(){$('balance').textContent='৳ '+fmt(balance);try{localStorage.setItem('master-games-settings-v1',JSON.stringify({...prefs,balance}))}catch(e){}}
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>go(b.dataset.open));document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>go('home'));
-$('reset').onclick=()=>{balance=10000;wallet()};$('sound').onclick=()=>{sound=!sound;$('sound').textContent=sound?'🔊 শব্দ চালু':'🔇 শব্দ বন্ধ'};
-$('theme').onchange=e=>{let v=e.target.value;document.documentElement.style.setProperty('--felt',v==='blue'?'#173b55':v==='purple'?'#402653':'#17432d');document.documentElement.style.setProperty('--gold',v==='blue'?'#80c9e8':v==='purple'?'#d5a5ef':'#e7bd62')};
+// Settings and saved progress
+const STORE='master-games-settings-v1';
+let prefs={theme:'green',sound:false,clock:'bd',background:''};
+try{const saved=JSON.parse(localStorage.getItem(STORE)||'{}');prefs={...prefs,...saved};if(Number.isFinite(saved.balance)&&saved.balance>=0)balance=saved.balance}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({...prefs,balance}))}catch(e){}}
+function applyTheme(v){prefs.theme=v;document.documentElement.style.setProperty('--felt',v==='blue'?'#173b55':v==='purple'?'#402653':'#17432d');document.documentElement.style.setProperty('--gold',v==='blue'?'#80c9e8':v==='purple'?'#d5a5ef':'#e7bd62');$('theme').value=v}
+function beep(freq=620){if(!prefs.sound)return;try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const ctx=new C(),o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(.045,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.12);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.12);o.onended=()=>ctx.close()}catch(e){}}
+$('reset').onclick=()=>{balance=10000;wallet();save();beep(520)};
+$('sound').onclick=()=>{prefs.sound=!prefs.sound;$('sound').textContent=prefs.sound?'🔊 শব্দ চালু':'🔇 শব্দ বন্ধ';save();if(prefs.sound)beep()};
+$('theme').onchange=e=>{applyTheme(e.target.value);save();beep()};
+$('clockMode').value=prefs.clock;
+const oldClockChange=$('clockMode').onchange;
+$('clockMode').onchange=e=>{prefs.clock=e.target.value;save();clock()};
+applyTheme(prefs.theme);$('sound').textContent=prefs.sound?'🔊 শব্দ চালু':'🔇 শব্দ বন্ধ';
+if(prefs.background){document.body.style.backgroundImage='linear-gradient(#101713bb,#101713dd),url('+prefs.background+')';document.body.style.backgroundSize='cover';document.body.style.backgroundAttachment='fixed'}
+const bgInput=document.createElement('input');bgInput.type='file';bgInput.accept='image/*';bgInput.hidden=true;document.body.appendChild(bgInput);
+const bgButton=document.createElement('button');bgButton.className='btn secondary';bgButton.textContent='🖼️ ব্যাকগ্রাউন্ড ছবি';$('home').querySelector('.settings').appendChild(bgButton);
+bgButton.onclick=()=>bgInput.click();
+bgInput.onchange=()=>{const file=bgInput.files&&bgInput.files[0];if(!file)return;if(file.size>1800000){alert('১.৮ MB-এর ছোট ছবি নির্বাচন করুন।');return}const reader=new FileReader();reader.onload=()=>{prefs.background=reader.result;document.body.style.backgroundImage='linear-gradient(#101713bb,#101713dd),url('+prefs.background+')';document.body.style.backgroundSize='cover';document.body.style.backgroundAttachment='fixed';save()};reader.readAsDataURL(file)};
+
 function clock(){let m=$('clockMode').value,bd=new Date().toLocaleTimeString('bn-BD',{timeZone:'Asia/Dhaka',hour:'2-digit',minute:'2-digit'}),ry=new Date().toLocaleTimeString('bn-BD',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit'});$('clock').textContent=m==='bd'?'বাংলাদেশ সময়: '+bd:m==='riyadh'?'রিয়াদ সময়: '+ry:'বাংলাদেশ: '+bd+' · রিয়াদ: '+ry}
 $('clockMode').onchange=clock;clock();setInterval(clock,30000);
 const suits=[['♠',0],['♥',1],['♦',1],['♣',0]],ranks=[2,3,4,5,6,7,8,9,10,11,12,13,14],names={11:'J',12:'Q',13:'K',14:'A'};
