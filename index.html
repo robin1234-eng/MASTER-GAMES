@@ -65,7 +65,7 @@ $('clockMode').onchange=clock;clock();setInterval(clock,30000);
 const suits=[['♠',0],['♥',1],['♦',1],['♣',0]],ranks=[2,3,4,5,6,7,8,9,10,11,12,13,14],names={11:'J',12:'Q',13:'K',14:'A'};
 function deck(){let d=[];suits.forEach(([s,red])=>ranks.forEach(v=>d.push({v,s,red})));for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}return d}
 function val(c){return names[c.v]||c.v}function face(c){return val(c)+c.s}function render(id,h,hide=false,click){$(id).innerHTML=h.map((c,i)=>'<button class="card '+(hide?'backcard':c.red?'red':'')+'" data-i="'+i+'" '+(click?'type="button"':'')+'>'+(hide?'?':face(c))+'</button>').join('');if(click)$(id).querySelectorAll('button').forEach(b=>b.onclick=()=>click(+b.dataset.i))}
-function ev3(h){let a=h.map(c=>c.v).sort((x,y)=>y-x),same=a[0]===a[2],flush=h.every(c=>c.s===h[0].s),seq=(a[0]-a[1]===1&&a[1]-a[2]===1)||(a[0]===14&&a[1]===3&&a[2]===2);if(same)return[6,a[0]];if(seq)return[5,a[0]===14?3:a[0]];if(flush)return[4,...a];if(a[0]===a[1]||a[1]===a[2])return[3,a[1],...a];return[2,...a]}
+function ev3(h){let a=h.map(c=>c.v).sort((x,y)=>y-x),same=a[0]===a[2],flush=h.every(c=>c.s===h[0].s),lowA23=a[0]===14&&a[1]===3&&a[2]===2,seq=lowA23||(a[0]-a[1]===1&&a[1]-a[2]===1);if(same)return[6,a[0]];if(seq)return[5,lowA23?3:a[0]];if(flush)return[4,...a];if(a[0]===a[1]||a[1]===a[2])return[3,a[1],...a];return[2,...a]}
 function cmp(a,b){let x=a,y=b;for(let i=0;i<Math.max(x.length,y.length);i++)if((x[i]||0)!==(y[i]||0))return (x[i]||0)>(y[i]||0)?1:-1;return 0}
 const labels=['','হাই কার্ড','জোড়া','কালার','সিকোয়েন্স','ট্রেইল','ট্রেইল'];
 // Teen Patti
