@@ -90,7 +90,7 @@ let hz=null;$('hzDeal').onclick=()=>{let d=deck();hz=[d.splice(0,13),d.splice(0,
 let br=null,brTurn=0,brLeader=0,brTricksWon=[0,0,0,0],brBids=[0,0,0,0],brScores=[0,0,0,0],brTrick=[];
 const brNames=['আপনি','কম্পিউটার ১','কম্পিউটার ২','কম্পিউটার ৩'];
 function brPaint(){render('brHand',br?br[0]:[],false,i=>brPlayUser(i))}
-function brLegal(hand,suit){return suit===null||!hand.some(c=>c.s===suit)||hand.filter(c=>c.s===suit)}
+function brLegal(hand,suit){return suit===null||!hand.some(c=>c.s===suit)?hand:hand.filter(c=>c.s===suit)}
 function brBeats(a,b,lead){if(a.s==='♠'&&b.s!=='♠')return true;if(a.s!=='♠'&&b.s==='♠')return false;if(a.s===b.s)return a.v>b.v;return a.s===lead&&b.s!==lead}
 function brResolve(){const lead=brTrick[0].c.s;let best=brTrick[0];for(const play of brTrick.slice(1))if(brBeats(play.c,best.c,lead))best=play;brTricksWon[best.p]++;$('brs').textContent='এই ট্রিক জিতেছে: '+brNames[best.p]+' · ♠ ট্রাম্প';render('brTrick',brTrick.map(x=>x.c));brTrick=[];if(br[0].length===0){brFinish();return}brLeader=best.p;brTurn=brLeader}
 function brFinish(){let lines=[];let total=0;for(let p=0;p<4;p++){let bid=brBids[p],won=brTricksWon[p],score=won>=bid?10*bid+(won-bid):-10*bid;brScores[p]+=score;total+=score;lines.push(brNames[p]+': বিড '+bid+', ট্রিক '+won+', স্কোর '+(score>0?'+':'')+score)}if(brScores[0]>0){balance+=brScores[0];wallet()}$('brr').textContent=lines.join(' · ')+' | মোট স্কোর: '+brScores.map((x,i)=>brNames[i]+' '+x).join(' / ');$('brs').textContent='রাউন্ড শেষ! নতুন ডিল দিয়ে আবার খেলুন।';br=null;brPaint()}
