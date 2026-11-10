@@ -1,40 +1,69 @@
 <!doctype html>
 <html lang="bn">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101713">
-  <title>MASTER GAMES</title>
-  <style>
-    :root{color-scheme:dark;--bg:#101713;--panel:#1a241e;--gold:#e7bd62;--muted:#aab5ac}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#34432e 0,#101713 48%);color:#f7f4e9;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}
-    header{padding:28px 18px 18px;text-align:center} .logo{width:64px;height:64px;border:2px solid var(--gold);border-radius:20px;display:grid;place-items:center;margin:0 auto 12px;color:var(--gold);font-weight:900;font-size:25px;box-shadow:0 0 28px #e7bd6233}
-    h1{margin:0;color:var(--gold);letter-spacing:2px;font-size:27px}header p{color:var(--muted);margin:7px 0 0;font-size:14px}
-    main{max-width:760px;margin:auto;padding:12px 16px 36px}.wallet{background:linear-gradient(110deg,#29382a,#1a241e);border:1px solid #596344;border-radius:18px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;margin:8px 0 24px}.wallet small{color:var(--muted)}.amount{font-size:22px;color:var(--gold);font-weight:800}
-    .section{display:flex;justify-content:space-between;align-items:center;margin:0 2px 12px}.section h2{font-size:18px;margin:0}.section span{font-size:12px;color:var(--muted)}
-    .games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.game{background:linear-gradient(145deg,#202c24,#17201b);border:1px solid #344438;border-radius:17px;padding:17px 13px;min-height:126px;text-align:left;color:inherit;cursor:pointer}.game:active{transform:scale(.98)}.emoji{font-size:30px;display:block;margin-bottom:8px}.game strong{display:block;font-size:16px}.game small{color:var(--muted);font-size:12px}.tag{display:inline-block;margin-top:9px;border:1px solid #78663e;color:var(--gold);border-radius:30px;padding:3px 8px;font-size:10px}
-    .note{margin-top:20px;padding:14px;border-radius:14px;background:#18221c;color:var(--muted);font-size:13px;line-height:1.6;border:1px solid #2b3b30}footer{text-align:center;color:#748078;font-size:11px;padding:22px}
-    @media(min-width:600px){.games{grid-template-columns:repeat(3,minmax(0,1fr))}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101713">
+<title>MASTER GAMES</title>
+<style>
+:root{color-scheme:dark;--bg:#101713;--panel:#1b271f;--gold:#e7bd62;--muted:#aab5ac;--line:#3a4a3d}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% -10%,#35452e 0,#101713 48%);color:#f7f4e9;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+header{text-align:center;padding:22px 16px 14px}.logo{width:54px;height:54px;border:2px solid var(--gold);border-radius:17px;display:grid;place-items:center;margin:auto auto 9px;color:var(--gold);font-size:22px;font-weight:900}h1{margin:0;color:var(--gold);font-size:25px;letter-spacing:2px}header p{margin:6px 0;color:var(--muted);font-size:13px}
+main{max-width:760px;margin:auto;padding:8px 14px 30px}.wallet{background:linear-gradient(110deg,#29382a,#1a241e);border:1px solid #596344;border-radius:16px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;margin:6px 0 19px}.wallet small{color:var(--muted)}.amount{font-size:22px;color:var(--gold);font-weight:800}
+.section{display:flex;justify-content:space-between;align-items:center;margin:0 2px 11px}.section h2{font-size:17px;margin:0}.section span{font-size:11px;color:var(--muted)}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.game{background:linear-gradient(145deg,#202c24,#17201b);border:1px solid var(--line);border-radius:15px;padding:14px 12px;min-height:110px;text-align:left;color:inherit;cursor:pointer}.game:active,button:active{transform:scale(.98)}.emoji{font-size:27px;display:block;margin-bottom:6px}.game strong{display:block;font-size:15px}.game small{color:var(--muted);font-size:11px}.tag{display:inline-block;margin-top:7px;border:1px solid #78663e;color:var(--gold);border-radius:30px;padding:2px 8px;font-size:10px}
+.note{margin-top:16px;padding:12px;border-radius:13px;background:#18221c;color:var(--muted);font-size:12px;line-height:1.6;border:1px solid #2b3b30}
+button{font:inherit}.primary,.secondary{border:0;border-radius:12px;padding:12px 16px;font-weight:750;cursor:pointer}.primary{background:linear-gradient(120deg,#f0cf7d,#c99538);color:#172018}.secondary{background:#2a382e;color:#f7f4e9;border:1px solid #50604e}.screen{display:none}.screen.active{display:block}.back{background:none;border:0;color:var(--gold);padding:8px 0 14px;cursor:pointer}.table{background:linear-gradient(145deg,#173b2a,#10291e);border:5px solid #725b31;border-radius:28px;padding:16px 12px;margin:10px 0 14px;box-shadow:inset 0 0 0 2px #c29a4c55}.seat{text-align:center;padding:8px}.seat b{display:block;color:#e9d49e;font-size:14px}.cards{display:flex;justify-content:center;gap:7px;min-height:78px;margin:8px 0}.card{width:48px;height:70px;background:#fffdf5;color:#172018;border-radius:7px;display:grid;place-items:center;font-size:22px;font-weight:800;box-shadow:0 2px 6px #0008}.card.red{color:#c52d32}.card.backcard{background:repeating-linear-gradient(45deg,#274b37,#274b37 5px,#e7bd62 6px,#274b37 8px);border:2px solid #fff3;color:transparent}.status{text-align:center;min-height:42px;color:#f4d58c;font-size:14px;padding:8px}.actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}.actions button{flex:1;min-width:125px}.result{background:#1d2a20;border:1px solid var(--line);padding:12px;border-radius:12px;text-align:center;margin:10px 0;color:#f3dfad}
+.settings{margin-top:14px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}footer{text-align:center;color:#748078;font-size:10px;padding:20px}
+@media(min-width:600px){.games{grid-template-columns:repeat(3,minmax(0,1fr))}.table{padding:20px}}
+</style>
 </head>
 <body>
-  <header><div class="logo">MG</div><h1>MASTER GAMES</h1><p>খেলুন, উপভোগ করুন — সম্পূর্ণ অফলাইন গেমিং</p></header>
-  <main>
-    <div class="wallet"><div><small>আপনার ভার্চুয়াল ব্যালেন্স</small><div class="amount">৳ ১০,০০০</div></div><span aria-hidden="true">🪙</span></div>
-    <div class="section"><h2>গেম বেছে নিন</h2><span>প্রথম সংস্করণ</span></div>
-    <div class="games">
-      <button class="game" data-game="Teen Patti"><span class="emoji">🃏</span><strong>তিন পাত্তি</strong><small>Teen Patti</small><span class="tag">শুরু হচ্ছে</span></button>
-      <button class="game" data-game="Hazari"><span class="emoji">🎴</span><strong>হাজারি</strong><small>Hazari</small><span class="tag">শুরু হচ্ছে</span></button>
-      <button class="game" data-game="Rummy"><span class="emoji">♠️</span><strong>রামি</strong><small>Rummy</small><span class="tag">শুরু হচ্ছে</span></button>
-      <button class="game" data-game="Poker"><span class="emoji">♦️</span><strong>পোকার</strong><small>Poker</small><span class="tag">শুরু হচ্ছে</span></button>
-      <button class="game" data-game="Call Bridge"><span class="emoji">♣️</span><strong>কল ব্রিজ</strong><small>৪ জনের খেলা</small><span class="tag">শুরু হচ্ছে</span></button>
-      <button class="game" data-game="Ludo"><span class="emoji">🎲</span><strong>লুডু</strong><small>Ludo</small><span class="tag">শুরু হচ্ছে</span></button>
-    </div>
-    <div class="note">এটি MASTER GAMES-এর প্রাথমিক অ্যাপ স্ক্রিন। এখানে ব্যবহৃত টাকা সম্পূর্ণ কাল্পনিক ভার্চুয়াল পয়েন্ট — কোনো বাস্তব অর্থ জমা, বাজি বা উত্তোলনের ব্যবস্থা নেই। পরবর্তী ধাপে গেমগুলোর নিয়ম ও অফলাইন খেলার ব্যবস্থা যোগ করা হবে।</div>
-  </main>
-  <footer>MASTER GAMES · Version 0.1 · Offline-first</footer>
-  <script>
-    document.querySelectorAll("[data-game]").forEach(button=>button.addEventListener("click",()=>alert(button.dataset.game+" গেমটি পরবর্তী আপডেটে যোগ করা হবে।")));
-  </script>
-</body>
-</html>
+<header><div class="logo">MG</div><h1>MASTER GAMES</h1><p>খেলুন, উপভোগ করুন — অফলাইন গেমিং</p></header>
+<main>
+<div class="wallet"><div><small>আপনার ভার্চুয়াল ব্যালেন্স</small><div class="amount" id="balance">৳ ১০,০০০</div></div><span>🪙</span></div>
+<section id="home" class="screen active">
+<div class="section"><h2>গেম বেছে নিন</h2><span>ভার্সন ০.২</span></div>
+<div class="games">
+<button class="game" id="teenBtn"><span class="emoji">🃏</span><strong>তিন পাত্তি</strong><small>Teen Patti · ৩ কার্ড</small><span class="tag">খেলা যাবে</span></button>
+<button class="game" data-coming="হাজারি"><span class="emoji">🎴</span><strong>হাজারি</strong><small>Hazari</small><span class="tag">পরবর্তী ধাপ</span></button>
+<button class="game" data-coming="রামি"><span class="emoji">♠️</span><strong>রামি</strong><small>Rummy</small><span class="tag">পরবর্তী ধাপ</span></button>
+<button class="game" data-coming="পোকার"><span class="emoji">♦️</span><strong>পোকার</strong><small>Poker</small><span class="tag">পরবর্তী ধাপ</span></button>
+<button class="game" data-coming="কল ব্রিজ"><span class="emoji">♣️</span><strong>কল ব্রিজ</strong><small>৪ জনের খেলা</small><span class="tag">পরবর্তী ধাপ</span></button>
+<button class="game" data-coming="লুডু"><span class="emoji">🎲</span><strong>লুডু</strong><small>Ludo</small><span class="tag">পরবর্তী ধাপ</span></button>
+</div>
+<div class="note">ভার্চুয়াল টাকা শুধু গেমের পয়েন্ট। কোনো বাস্তব টাকা, বাজি, জমা বা উত্তোলন নেই। প্রথমে Teen Patti-এর অফলাইন প্রোটোটাইপ চালু করা হয়েছে।</div>
+<div class="settings"><button class="secondary" id="resetBalance">ব্যালেন্স রিসেট</button><button class="secondary" id="soundToggle">🔊 শব্দ: বন্ধ</button></div>
+</section>
+<section id="teen" class="screen">
+<button class="back" id="backHome">← গেম তালিকায় ফিরে যান</button>
+<div class="section"><h2>🃏 তিন পাত্তি</h2><span>আপনি বনাম ২ কম্পিউটার</span></div>
+<div class="table">
+<div class="seat"><b>কম্পিউটার ২</b><div class="cards" id="bot2"><div class="card backcard">?</div><div class="card backcard">?</div><div class="card backcard">?</div></div></div>
+<div class="seat"><b>কম্পিউটার ১</b><div class="cards" id="bot1"><div class="card backcard">?</div><div class="card backcard">?</div><div class="card backcard">?</div></div></div>
+<div class="status" id="status">নতুন রাউন্ড শুরু করুন।</div>
+<div class="seat"><b>আপনার কার্ড</b><div class="cards" id="player"><span class="card">?</span><span class="card">?</span><span class="card">?</span></div></div>
+</div>
+<div class="result" id="result">প্রতি রাউন্ডে ১০০ ভার্চুয়াল পয়েন্ট অংশ নেবে।</div>
+<div class="actions"><button class="primary" id="deal">কার্ড দিন · ১০০ পয়েন্ট</button><button class="secondary" id="reveal" disabled>কার্ড দেখুন</button></div>
+<div class="note">সহজ Teen Patti র‍্যাঙ্কিং: ট্রেইল (তিন একই) → সিকোয়েন্স → কালার → জোড়া → হাই কার্ড। এই সংস্করণটি শেখার/পরীক্ষার জন্য; স্থানীয় নিয়মে কিছু পার্থক্য থাকতে পারে।</div>
+</section>
+</main><footer>MASTER GAMES · Version 0.2 · Offline prototype</footer>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);let balance=10000,round=null,shown=false,sound=false;
+const suits=[{s:'♠',red:false},{s:'♥',red:true},{s:'♦',red:true},{s:'♣',red:false}],ranks=[2,3,4,5,6,7,8,9,10,11,12,13,14];
+const bn=n=>new Intl.NumberFormat('bn-BD').format(n);
+function wallet(){$('balance').textContent='৳ '+bn(balance)}
+function shuffle(){let d=[];for(const su of suits)for(const v of ranks)d.push({v,s:su.s,red:su.red});for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}return d}
+function evaluate(hand){let a=hand.map(c=>c.v).sort((x,y)=>y-x),same=a[0]===a[1]&&a[1]===a[2],flush=hand.every(c=>c.s===hand[0].s),seq=(a[0]-a[1]===1&&a[1]-a[2]===1)||(a[0]===14&&a[1]===3&&a[2]===2);let score;
+if(same)score=[6,a[0]];else if(seq)score=[5,a[0]===14&&a[1]===3?3:a[0]];else if(flush)score=[4,...a];else if(a[0]===a[1]||a[1]===a[2])score=[3,a[1],...a];else score=[2,...a];return score}
+function compare(a,b){let x=evaluate(a),y=evaluate(b);for(let i=0;i<Math.max(x.length,y.length);i++){if((x[i]||0)!==(y[i]||0))return (x[i]||0)>(y[i]||0)?1:-1}return 0}
+function label(h){let s=evaluate(h)[0];return ['','', 'হাই কার্ড','জোড়া','কালার','সিকোয়েন্স','ট্রেইল'][s]}
+function draw(id,hand,hide){$(id).innerHTML=hand.map(c=>'<div class="card '+(hide?'backcard':c.red?'red':'')+'">'+(hide?'?':c.v===14?'A':c.v===13?'K':c.v===12?'Q':c.v===11?'J':c.v)+c.s+'</div>').join('')}
+function deal(){if(balance<100){$('result').textContent='ব্যালেন্স কম। রিসেট করে আবার খেলুন।';return}balance-=100;wallet();let d=shuffle();round={p:d.splice(0,3),b1:d.splice(0,3),b2:d.splice(0,3)};shown=false;draw('player',round.p,false);draw('bot1',round.b1,true);draw('bot2',round.b2,true);$('status').textContent='আপনার কার্ড দেওয়া হয়েছে। কার্ড দেখুন চাপুন।';$('result').textContent='১০০ পয়েন্ট কাটা হয়েছে। ফলাফল দেখতে কার্ড দেখুন।';$('deal').disabled=true;$('reveal').disabled=false}
+function reveal(){if(!round||shown)return;shown=true;draw('bot1',round.b1,false);draw('bot2',round.b2,false);let c1=compare(round.p,round.b1),c2=compare(round.p,round.b2),win=c1>=0&&c2>=0;let desc='আপনি: '+label(round.p)+' · কম্পিউটার ১: '+label(round.b1)+' · কম্পিউটার ২: '+label(round.b2);if(win){balance+=300;$('status').textContent='অভিনন্দন! আপনি রাউন্ড জিতেছেন।';$('result').textContent=desc+' — পুরস্কার +৩০০ পয়েন্ট';}else{$('status').textContent='এই রাউন্ডে কম্পিউটার জিতেছে।';$('result').textContent=desc+' — পরের বার চেষ্টা করুন।'}wallet();$('deal').disabled=false;$('reveal').disabled=true}
+$('teenBtn').onclick=()=>{$('home').classList.remove('active');$('teen').classList.add('active')};$('backHome').onclick=()=>{$('teen').classList.remove('active');$('home').classList.add('active')};$('deal').onclick=deal;$('reveal').onclick=reveal;
+document.querySelectorAll('[data-coming]').forEach(b=>b.onclick=()=>alert(b.dataset.coming+' গেমটি পরবর্তী ধাপে তৈরি করা হবে।'));
+$('resetBalance').onclick=()=>{balance=10000;wallet()};$('soundToggle').onclick=()=>{sound=!sound;$('soundToggle').textContent=sound?'🔊 শব্দ: চালু':'🔊 শব্দ: বন্ধ'};wallet();
+})();
+</script>
+</body></html>
