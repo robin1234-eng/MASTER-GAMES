@@ -1,4 +1,4 @@
-const CACHE = 'master-games-v1-12';
+const CACHE = 'master-games-v1-13';
 const FILES = ['./', './index.html', './manifest.json'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
