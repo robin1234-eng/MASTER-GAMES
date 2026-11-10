@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <title>MASTER GAMES</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101713;--panel:#1a241e;--gold:#e7bd62;--muted:#aab5ac}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#34432e 0,#101713 48%);color:#f7f4e9;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}
+    header{padding:28px 18px 18px;text-align:center} .logo{width:64px;height:64px;border:2px solid var(--gold);border-radius:20px;display:grid;place-items:center;margin:0 auto 12px;color:var(--gold);font-weight:900;font-size:25px;box-shadow:0 0 28px #e7bd6233}
+    h1{margin:0;color:var(--gold);letter-spacing:2px;font-size:27px}header p{color:var(--muted);margin:7px 0 0;font-size:14px}
+    main{max-width:760px;margin:auto;padding:12px 16px 36px}.wallet{background:linear-gradient(110deg,#29382a,#1a241e);border:1px solid #596344;border-radius:18px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;margin:8px 0 24px}.wallet small{color:var(--muted)}.amount{font-size:22px;color:var(--gold);font-weight:800}
+    .section{display:flex;justify-content:space-between;align-items:center;margin:0 2px 12px}.section h2{font-size:18px;margin:0}.section span{font-size:12px;color:var(--muted)}
+    .games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.game{background:linear-gradient(145deg,#202c24,#17201b);border:1px solid #344438;border-radius:17px;padding:17px 13px;min-height:126px;text-align:left;color:inherit;cursor:pointer}.game:active{transform:scale(.98)}.emoji{font-size:30px;display:block;margin-bottom:8px}.game strong{display:block;font-size:16px}.game small{color:var(--muted);font-size:12px}.tag{display:inline-block;margin-top:9px;border:1px solid #78663e;color:var(--gold);border-radius:30px;padding:3px 8px;font-size:10px}
+    .note{margin-top:20px;padding:14px;border-radius:14px;background:#18221c;color:var(--muted);font-size:13px;line-height:1.6;border:1px solid #2b3b30}footer{text-align:center;color:#748078;font-size:11px;padding:22px}
+    @media(min-width:600px){.games{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  </style>
+</head>
+<body>
+  <header><div class="logo">MG</div><h1>MASTER GAMES</h1><p>খেলুন, উপভোগ করুন — সম্পূর্ণ অফলাইন গেমিং</p></header>
+  <main>
+    <div class="wallet"><div><small>আপনার ভার্চুয়াল ব্যালেন্স</small><div class="amount">৳ ১০,০০০</div></div><span aria-hidden="true">🪙</span></div>
+    <div class="section"><h2>গেম বেছে নিন</h2><span>প্রথম সংস্করণ</span></div>
+    <div class="games">
+      <button class="game" data-game="Teen Patti"><span class="emoji">🃏</span><strong>তিন পাত্তি</strong><small>Teen Patti</small><span class="tag">শুরু হচ্ছে</span></button>
+      <button class="game" data-game="Hazari"><span class="emoji">🎴</span><strong>হাজারি</strong><small>Hazari</small><span class="tag">শুরু হচ্ছে</span></button>
+      <button class="game" data-game="Rummy"><span class="emoji">♠️</span><strong>রামি</strong><small>Rummy</small><span class="tag">শুরু হচ্ছে</span></button>
+      <button class="game" data-game="Poker"><span class="emoji">♦️</span><strong>পোকার</strong><small>Poker</small><span class="tag">শুরু হচ্ছে</span></button>
+      <button class="game" data-game="Call Bridge"><span class="emoji">♣️</span><strong>কল ব্রিজ</strong><small>৪ জনের খেলা</small><span class="tag">শুরু হচ্ছে</span></button>
+      <button class="game" data-game="Ludo"><span class="emoji">🎲</span><strong>লুডু</strong><small>Ludo</small><span class="tag">শুরু হচ্ছে</span></button>
+    </div>
+    <div class="note">এটি MASTER GAMES-এর প্রাথমিক অ্যাপ স্ক্রিন। এখানে ব্যবহৃত টাকা সম্পূর্ণ কাল্পনিক ভার্চুয়াল পয়েন্ট — কোনো বাস্তব অর্থ জমা, বাজি বা উত্তোলনের ব্যবস্থা নেই। পরবর্তী ধাপে গেমগুলোর নিয়ম ও অফলাইন খেলার ব্যবস্থা যোগ করা হবে।</div>
+  </main>
+  <footer>MASTER GAMES · Version 0.1 · Offline-first</footer>
+  <script>
+    document.querySelectorAll("[data-game]").forEach(button=>button.addEventListener("click",()=>alert(button.dataset.game+" গেমটি পরবর্তী আপডেটে যোগ করা হবে।")));
+  </script>
+</body>
+</html>
